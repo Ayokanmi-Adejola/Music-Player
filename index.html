@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      href="resources/favicon.ico"
+      type="image/x-icon"
+      sizes="96x96"
+    />
+
+    <title>Music Player | devChallenges.io</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        background: url('resources/gradient-bg.jpg') center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Arial', sans-serif;
+        padding: 20px;
+      }
+
+      .music-player {
+        background: #121826a6;
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 35px;
+        width: 100%;
+        max-width: 380px;
+        text-align: center;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .album-art {
+        width: 100%;
+        max-width: 310px;
+        aspect-ratio: 1;
+        border-radius: 15px;
+        margin: 0 auto 20px;
+        background-image: url('resources/cover-1.jpg');
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .song-info {
+        margin-bottom: 25px;
+      }
+
+      .song-title {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .artist-name {
+        color: #b3b3b3;
+        font-size: 15px;
+      }
+
+      .progress-container {
+        margin-bottom: 25px;
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+        margin-bottom: 10px;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .progress {
+        height: 100%;
+        background: #C93B76;
+        border-radius: 2px;
+        width: 30%;
+        transition: width 0.3s ease;
+      }
+
+      .time-info {
+        display: flex;
+        justify-content: space-between;
+        color: #b3b3b3;
+        font-size: 12px;
+      }
+
+      .controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .control-btn {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .control-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1.1);
+      }
+
+      .play-btn {
+        background: #C93B76;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 5px 15px rgba(201, 59, 118, 0.4);
+      }
+
+      .play-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(201, 59, 118, 0.6);
+      }
+
+      .prev-btn, .next-btn {
+        font-size: 20px;
+      }
+
+      .play-btn img, .prev-btn img, .next-btn img {
+        width: 24px;
+        height: 24px;
+      }
+
+      .play-btn img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .author-info {
+        margin-top: 30px;
+        font-size: 14px;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .author-info a {
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .author-info a:hover {
+        color: white;
+      }
+
+      /* Mobile devices (up to 480px) */
+      @media (max-width: 480px) {
+        body {
+          padding: 15px;
+        }
+
+        .music-player {
+          padding: 25px 20px;
+          border-radius: 15px;
+        }
+
+        .album-art {
+          max-width: 280px;
+          border-radius: 12px;
+          margin-bottom: 15px;
+        }
+
+        .song-title {
+          font-size: 18px;
+          margin-bottom: 6px;
+        }
+
+        .artist-name {
+          font-size: 14px;
+        }
+
+        .controls {
+          gap: 15px;
+        }
+
+        .play-btn {
+          width: 45px;
+          height: 45px;
+        }
+
+        .play-btn img {
+          width: 24px;
+          height: 24px;
+        }
+
+        .prev-btn img, .next-btn img {
+          width: 20px;
+          height: 20px;
+        }
+
+        .author-info {
+          font-size: 12px;
+          margin-top: 20px;
+          padding: 0 10px;
+        }
+      }
+
+      /* Small tablets (481px to 768px) */
+      @media (min-width: 481px) and (max-width: 768px) {
+        .music-player {
+          padding: 30px;
+          max-width: 350px;
+        }
+
+        .album-art {
+          max-width: 290px;
+        }
+
+        .song-title {
+          font-size: 19px;
+        }
+      }
+
+      /* Large tablets and small desktops (769px to 1024px) */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .music-player {
+          max-width: 400px;
+        }
+
+        .album-art {
+          max-width: 320px;
+        }
+      }
+
+      /* Very small screens (up to 320px) */
+      @media (max-width: 320px) {
+        body {
+          padding: 10px;
+        }
+
+        .music-player {
+          padding: 20px 15px;
+        }
+
+        .album-art {
+          max-width: 250px;
+        }
+
+        .song-title {
+          font-size: 16px;
+        }
+
+        .artist-name {
+          font-size: 13px;
+        }
+
+        .controls {
+          gap: 12px;
+        }
+
+        .play-btn {
+          width: 40px;
+          height: 40px;
+        }
+
+        .play-btn img {
+          width: 20px;
+          height: 20px;
+        }
+
+        .author-info {
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="music-player">
+      <div class="album-art"></div>
+
+      <div class="song-info">
+        <div class="song-title">Lost in the City Lights</div>
+        <div class="artist-name">Cosmo Sheldrake</div>
+      </div>
+
+      <div class="progress-container">
+        <div class="time-info">
+          <span id="currentTime">2:32</span>
+          <span id="totalTime">4:07</span>
+        </div>
+        <div class="progress-bar" id="progressBar">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="control-btn prev-btn" id="prevBtn">
+          <img src="resources/Stop_and_play_fill-1.svg" alt="Previous" />
+        </button>
+
+        <button class="control-btn play-btn" id="playBtn">
+          <img src="resources/Play_fill.svg" alt="Play" id="playIcon" />
+          <img src="resources/Pause_fill.svg" alt="Pause" id="pauseIcon" style="display: none;" />
+        </button>
+
+        <button class="control-btn next-btn" id="nextBtn">
+          <img src="resources/Stop_and_play_fill_reverse.svg" alt="Next" />
+        </button>
+      </div>
+    </div>
+
+    <audio id="audioPlayer" preload="metadata">
+      <source src="resources/lost-in-city-lights-145038.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      const audioPlayer = document.getElementById('audioPlayer');
+      const playBtn = document.getElementById('playBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const progressBar = document.getElementById('progressBar');
+      const progress = document.getElementById('progress');
+      const currentTimeEl = document.getElementById('currentTime');
+      const totalTimeEl = document.getElementById('totalTime');
+      const playIcon = document.getElementById('playIcon');
+      const pauseIcon = document.getElementById('pauseIcon');
+      const albumArt = document.querySelector('.album-art');
+      const songTitle = document.querySelector('.song-title');
+      const artistName = document.querySelector('.artist-name');
+
+      let isPlaying = false;
+      let currentSongIndex = 0;
+
+      // Song playlist
+      const songs = [
+        {
+          title: "Lost in the City Lights",
+          artist: "Cosmo Sheldrake",
+          src: "resources/lost-in-city-lights-145038.mp3",
+          cover: "resources/cover-1.jpg"
+        },
+        {
+          title: "Forest Lullaby",
+          artist: "Lesfm",
+          src: "resources/forest-lullaby-110624.mp3",
+          cover: "resources/cover-2.jpg"
+        }
+      ];
+
+      // Format time helper function
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+
+      // Load current song
+      function loadSong(index) {
+        const song = songs[index];
+        audioPlayer.src = song.src;
+        songTitle.textContent = song.title;
+        artistName.textContent = song.artist;
+        albumArt.style.backgroundImage = `url('${song.cover}')`;
+
+        // Reset progress
+        progress.style.width = '0%';
+        currentTimeEl.textContent = '0:00';
+
+        // Reset play button
+        isPlaying = false;
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+
+      // Initialize with first song
+      loadSong(currentSongIndex);
+
+      // Play/Pause functionality
+      playBtn.addEventListener('click', () => {
+        if (isPlaying) {
+          audioPlayer.pause();
+          playIcon.style.display = 'block';
+          pauseIcon.style.display = 'none';
+        } else {
+          audioPlayer.play();
+          playIcon.style.display = 'none';
+          pauseIcon.style.display = 'block';
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Update progress bar
+      audioPlayer.addEventListener('timeupdate', () => {
+        const currentTime = audioPlayer.currentTime;
+        const duration = audioPlayer.duration;
+
+        if (duration) {
+          const progressPercent = (currentTime / duration) * 100;
+          progress.style.width = progressPercent + '%';
+          currentTimeEl.textContent = formatTime(currentTime);
+        }
+      });
+
+      // Set total time when metadata loads
+      audioPlayer.addEventListener('loadedmetadata', () => {
+        totalTimeEl.textContent = formatTime(audioPlayer.duration);
+      });
+
+      // Click on progress bar to seek
+      progressBar.addEventListener('click', (e) => {
+        const rect = progressBar.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        const clickPercent = clickX / width;
+
+        if (audioPlayer.duration) {
+          audioPlayer.currentTime = clickPercent * audioPlayer.duration;
+        }
+      });
+
+
+
+      // Previous and Next button functionality
+      prevBtn.addEventListener('click', () => {
+        currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        loadSong(currentSongIndex);
+      });
+
+      nextBtn.addEventListener('click', () => {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(currentSongIndex);
+      });
+
+      // Auto-play next song when current song ends
+      audioPlayer.addEventListener('ended', () => {
+        currentSongIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(currentSongIndex);
+        // Optionally auto-play the next song
+        // audioPlayer.play();
+        // isPlaying = true;
+        // playIcon.style.display = 'none';
+        // pauseIcon.style.display = 'block';
+      });
+    </script>
+
+    <div class="author-info">
+      Coded by <a href="#">Ayokanmi Adejola</a> | Challenge by
+      <a href="https://www.devchallenges.io?ref=challenge" target="_blank"
+        >devChallenges.io</a
+      >.
+    </div>
+  </body>
+</html>
