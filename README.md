@@ -7,14 +7,11 @@
 <div align="center">
   <h3>
     <a href="https://devchallenges.io/challenge/music-player" target="_blank">
-      🎯 Challenge
     </a>
   </h3>
 </div>
 
 
-
----
 
 ## 🎯 Overview
 
@@ -195,9 +192,9 @@ music-player/
 - **Community** - Feedback and suggestions from fellow developers
 
 ---
-# Music-Player
-# Music-Player
-# Music-Player
-# Music-Player
-"# Music-Player" 
-# Music-Player
+
+## 👤 Author
+
+
+- **Coded by**: Ayokanmi Adejola
+- **Challenge by**: [devChallenges.io](https://devchallenges.io/)
