@@ -182,8 +182,6 @@ music-player/
 
 
 
----
-
 ## 🙏 Acknowledgments
 
 - **[devChallenges.io](https://devchallenges.io/)** - For providing the design challenge
