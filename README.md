@@ -81,7 +81,7 @@ A modern, responsive music player built with vanilla HTML, CSS, and JavaScript. 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Ayokanmi-Adejola/music-player.git
+   git clone https://github.com/Ayokanmi-Adejola/Music-Player
    cd music-player
    ```
 
@@ -188,11 +188,3 @@ music-player/
 - **Design Inspiration** - Modern music player interfaces
 - **Audio Assets** - Sample tracks for demonstration
 - **Community** - Feedback and suggestions from fellow developers
-
----
-
-## 👤 Author
-
-
-- **Coded by**: Ayokanmi Adejola
-- **Challenge by**: [devChallenges.io](https://devchallenges.io/)
