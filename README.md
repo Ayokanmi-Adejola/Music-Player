@@ -1,4 +1,4 @@
-# Responsive Music Player
+# Responsive Music Player | devChallenges
 
 <div align="center">
   <img src="./thumbnail.jpg" alt="Music Player Preview" width="600">
@@ -13,9 +13,13 @@
 
 
 
-## 🎯 Overview
+##  Overview
 
 A modern, responsive music player built with vanilla HTML, CSS, and JavaScript. This project features a sleek glassmorphism design with full audio playback functionality, playlist management, and responsive layout that works seamlessly across all devices.
+
+| Desktop | Tablet | Mobile |
+| ------- | ------ | ------ |
+| ![Desktop](./design/Desktop_1350px.jpg) | ![Tablet](./design/Tablet_1024px.jpg) | ![Mobile](./design/Mobile_412px.jpg) |
 
 ### ✨ Key Highlights
 
