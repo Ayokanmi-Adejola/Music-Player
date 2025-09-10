@@ -1,4 +1,4 @@
-# Responsive Music Player | devChallenges
+# Responsive Music Player | devChallenges.io
 
 <div align="center">
   <img src="./thumbnail.jpg" alt="Music Player Preview" width="600">
